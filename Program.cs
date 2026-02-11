@@ -7,7 +7,9 @@
             var rules = new Dictionary<int, string>
             {
                 { 3, "Fizz" },
-                { 5, "Buzz" }
+                { 5, "Buzz" },
+                { 7, "Foo" },
+                { 11, "Bar" }
             };
 
             RunFizzBuzz(1, 100, rules);
