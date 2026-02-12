@@ -1,40 +1,46 @@
 ﻿namespace FizzBuzzCsharp
 {
+    public class Rule
+    {
+        public int Divisor { get; set; }
+        public string Output { get; set; }
+    }
+
     internal class Program
     {
         static void Main(string[] args)
         {
-            var rules = new Dictionary<int, string>
+            var rules = new List<Rule>
             {
-                { 3, "Fizz" },
-                { 5, "Buzz" },
-                { 7, "Foo" },
-                { 11, "Bar" }
+                new Rule { Divisor = 3, Output = "Fizz" },
+                new Rule { Divisor = 5, Output = "Buzz" },
+                new Rule { Divisor = 7, Output = "Foo" },
+                new Rule { Divisor = 11, Output = "Bar" }
             };
 
             RunFizzBuzz(1, 100, rules);
         }
 
-        static void RunFizzBuzz(int start, int end, Dictionary<int, string> rules)
+        static void RunFizzBuzz(int start, int end, List<Rule> rules)
         {
             for (int i = start; i <= end; i++)
             {
-                string output = "";
+                var output = new System.Text.StringBuilder();
                 foreach (var rule in rules)
                 {
-                    if (i % rule.Key == 0)
+                    if (i % rule.Divisor == 0)
                     {
-                        output += rule.Value;
+                        output.Append(rule.Output);
                     }
                 }
 
-                if (string.IsNullOrEmpty(output))
+                if (output.Length == 0)
                 {
                     Console.WriteLine(i);
                 }
                 else
                 {
-                    Console.WriteLine(output);
+                    Console.WriteLine(output.ToString());
                 }
             }
         }
